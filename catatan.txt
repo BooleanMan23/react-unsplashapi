@@ -1,0 +1,34 @@
+A) uncontrolled vs controlled element
+: sebelum value di taruh di state untuk mengambil data value sekarang kita harus
+  mengakses attribute value pada tag html input
+
+  hal ini tidak bagus dikarenakan react tidak mengetahui nilai input tersebut
+  dan value dari input disimpan pada html
+
+  dengan menaruhnya pada state react jika ada permintaan untuk melihat value
+  permintaan tersebut akan mengambil value dari state melainkan dari 
+  atribut value
+
+B) Penjelasan keyword 'this'
+    class Car{
+      setDriveSound(sound){
+        this.sound = sound;
+      }
+      drive(){
+        retrurn this.sound;
+      }
+    }
+
+    const car = new car();
+    car.setDriveSound('vroom');
+    const truck = {
+      sound: 'putputput'
+      driveMyTruck: car.drive
+    }
+    truck.driveMyTruck()
+
+    Keluaran : putputput
+
+    This selalu mengembalikan object kiri dari suatu fungsi
+ 
+  
