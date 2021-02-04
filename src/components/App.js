@@ -7,25 +7,34 @@ import unsplash from '../api/unsplash';
 
 
 const testImages = ['cars1.jpg', 'cars2.jpg', 'cars3.jpg', 'cars4.jpg'];
+
+const imageLinkArray = (response) =>{
+    const imageArray = [];
+    response.forEach(image => {
+        imageArray.push(image.urls.small);
+    });
+    return imageArray;
+}
 class App extends React.Component{
     state = { images :[] };
      onSearchSubmit  =  async (term) =>{
         const response = await unsplash.get('https://api.unsplash.com/search/photos', {
         params : { query: term }
         });
-        console.log(response.data.results);
-        this.setState({images: response.data.results});
+        this.setState({images: imageLinkArray(response.data.results)});
     }
     render(){
         return (
             // <Excercise/>
             <Container marginTop = "mt-5">
                   <SearchBar placeholder = "Image Keyword" onSubmit={this.onSearchSubmit}/>
-                  <ImageList images = {testImages} />
-                  <h2>{this.state.images.length}</h2>
+                  <ImageList images = {this.state.images} />
+               
             </Container>
         );
     }
 }
+
+
 
 export default App;
